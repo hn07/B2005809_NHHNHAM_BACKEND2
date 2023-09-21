@@ -14,9 +14,11 @@ class ContactService {
       favorite: payload.favorite,
     };
     // Remove undefined fields
-    Objects.keys(contact).forEach(
-      (key) => contact[key] === undefined && delete contact[key]
-    );
+    Object.keys(contact).forEach((key) => {
+      if (contact[key] === undefined) {
+        delete contact[key];
+      }
+    });
     return contact;
   }
   async create(payload) {
@@ -65,11 +67,11 @@ class ContactService {
     return result.value;
   }
 
-  async findAllFavorite(){
-    return  await this.Contact.find({'favorite':true});
+  async findAllFavorite() {
+    return await this.Contact.find({ favorite: true });
   }
 
-  async deleteAll(){
+  async deleteAll() {
     const result = await this.Contact.deleteMany({});
     return result.deleteCount;
   }
