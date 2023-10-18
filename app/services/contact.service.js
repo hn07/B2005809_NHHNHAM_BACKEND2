@@ -57,7 +57,7 @@ class ContactService {
       { $set: update },
       { returnDocument: "after" }
     );
-    return result.value;
+    return result;
   }
 
   async delete(id) {
